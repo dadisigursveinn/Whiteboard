@@ -16,9 +16,14 @@ $( document ).ready(function() {
         if (settings.nextObject == "Circle") {
             shape = new Circle(/* TODO: Fynna x og y */settings.nextColor);
         } else if (settings.nextObject == "Rectangle") {
-            settings.currentShape == "Rectangle"
+            settings.currentShape = "Rectangle";
             console.log("Drawing Rectangle!");
             shape = new Rectangle(x, y, settings.nextColor);
+        }
+        else if (settings.nextObject == "Line") {
+            settings.currentShape = "Line";
+            console.log("Drawing Line!");
+            shape = new Line(x, y, settings.nextColor);
         }
         //...
         settings.currentShape = shape;
@@ -30,9 +35,9 @@ $( document ).ready(function() {
 
     $("#myCanvas").mousemove( function(e) {
         //console.log("mouse moved")
+        var x = e.pageX - this.offsetLeft;
+        var y = e.pageY - this.offsetTop;
         if(settings.currentShape !== undefined) {
-            var x = e.pageX - this.offsetLeft;
-            var y = e.pageY - this.offsetTop;
             settings.currentShape.setEnd(x, y)
             drawAll();
         }

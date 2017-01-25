@@ -47,7 +47,11 @@ class Line extends Shape {
     }
 
     draw(context) {
-        // ...
+		context.fillStyle = this.color;
+		context.beginPath( );     // Starts the line drawing
+		context.moveTo( this.x, this.y );
+		context.lineTo( this.endX, this.endY );
+		context.stroke( );
     }
 }
 
