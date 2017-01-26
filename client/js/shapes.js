@@ -3,14 +3,14 @@ class Shape {
     constructor(x, y, color) {
         this.x = x;
         this.y = y;
-        this.endX = x;
-        this.endY = y;
+        this.endX = 0;
+        this.endY = 0;
         this.color = color;
     }
 
     setEnd(x, y) {
-        this.endX = x;
-        this.endY = y;
+        this.endX = x-this.x;
+        this.endY = y-this.y;
     }
 }
 

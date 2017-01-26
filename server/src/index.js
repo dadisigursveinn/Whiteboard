@@ -26,6 +26,10 @@ function listItems(collection) {
 	return result;
 }
 
+app.get("/", (req, res) => {
+    res.json(index.html).end();
+})
+
 app.get("/api/drawings", (req, res) => {
 	var result = listItems(db.drawings);
 	res.json(result).end();
