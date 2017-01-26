@@ -20,8 +20,8 @@ class Rectangle extends Shape {
         //this. ...
     }
     draw(context) {
-        context.fillStyle = this.color;
-        context.fillRect(this.x, this.y, this.endX, this.endY);
+        context.strokeStyle = this.color;
+        context.strokeRect(this.x, this.y, this.endX, this.endY);
     }
 }
 
