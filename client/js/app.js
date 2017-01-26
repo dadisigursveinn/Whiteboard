@@ -31,7 +31,27 @@ $( document ).ready(function() {
         shape.draw(context);
     });
 
-
+    $("button").click(function(){
+        switch($(this).attr('id')) {
+            case "rectangle":
+                console.log("rectangle");
+                break;
+            case "circle":
+                console.log("circle");
+                break;
+            case "line":
+                console.log("line");
+                break
+            case "text":
+                console.log("text");
+                break
+            case "pen":
+                console.log("pen");
+                break
+            default:
+                console.log("nothing");
+        }
+    });
 
     $("#myCanvas").mousemove( function(e) {
         //console.log("mouse moved")
