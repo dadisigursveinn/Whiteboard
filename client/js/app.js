@@ -34,22 +34,25 @@ $( document ).ready(function() {
     $("button").click(function(){
         switch($(this).attr('id')) {
             case "rectangle":
+                settings.nextObject = "Rectangle";
                 console.log("rectangle");
                 break;
             case "circle":
+                settings.nextObject = "Circle";
                 console.log("circle");
                 break;
             case "line":
+                settings.nextObject = "Line";
                 console.log("line");
                 break
             case "text":
+                settings.nextObject = "Text";
                 console.log("text");
                 break
             case "pen":
+                settings.nextObject = "Pen";
                 console.log("pen");
                 break
-            default:
-                console.log("nothing");
         }
     });
 
