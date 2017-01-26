@@ -3,3 +3,10 @@
 	border-color: black;
 	border-width: 1px;
 }
+
+.textBox {
+  border: none;
+  background: transparent;
+  border: none;
+  outline: none;
+}

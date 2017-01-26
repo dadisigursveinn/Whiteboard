@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     var settings = {
         canvasObj: document.getElementById("myCanvas"),
-        nextObject: "Rectangle",
+        nextObject: "Text",
         nextColor: $('input[name=color]:checked').val(),
         currentShape: undefined,
         shapes: []
@@ -24,6 +24,8 @@ $( document ).ready(function() {
             settings.currentShape = "Line";
             console.log("Drawing Line!");
             shape = new Line(x, y, settings.nextColor);
+        } else {
+            return ;
         }
         //...
         settings.currentShape = shape;
@@ -31,33 +33,40 @@ $( document ).ready(function() {
         shape.draw(context);
     });
 
+    $("#myCanvas").click(function(e){
+        var canvasInfo = document.getElementById("myCanvas").getBoundingClientRect();
+        console.log(canvasInfo);
+        var x = e.pageX - this.offsetLeft + canvasInfo.left;
+        var y = e.pageY - this.offsetTop + canvasInfo.top;
+        console.log("computed x: " + x);
+        console.log("computed y: " + y);
+        var textField = "<input class= 'textBox' type='text' style='position:absolute;top:" + y + ";left:" + x + ";' placeholder='text'></input>"
+        if (settings.nextObject === "Text") {
+            $("body").append(textField);
+        }
+    })
+
     $("button").click(function(){
         switch($(this).attr('id')) {
             case "rectangle":
                 settings.nextObject = "Rectangle";
-                console.log("rectangle");
                 break;
             case "circle":
                 settings.nextObject = "Circle";
-                console.log("circle");
                 break;
             case "line":
                 settings.nextObject = "Line";
-                console.log("line");
                 break
             case "text":
                 settings.nextObject = "Text";
-                console.log("text");
                 break
             case "pen":
                 settings.nextObject = "Pen";
-                console.log("pen");
                 break
         }
     });
 
     $("#myCanvas").mousemove( function(e) {
-        //console.log("mouse moved")
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
         if(settings.currentShape !== undefined) {
