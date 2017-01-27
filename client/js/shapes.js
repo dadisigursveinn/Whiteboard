@@ -1,11 +1,12 @@
 class Shape {
     // params: x and y positions on canvas
-    constructor(x, y, color) {
+    constructor(x, y, color, lineWidth) {
         this.x = x;
         this.y = y;
         this.endX = 0;
         this.endY = 0;
         this.color = color;
+        this.lineWidth = lineWidth;
     }
 
     setEnd(x, y) {
@@ -15,30 +16,32 @@ class Shape {
 }
 
 class Rectangle extends Shape {
-    constructor(x, y, color) {
-        super(x, y, color);
+    constructor(x, y, color, lineWidth) {
+        super(x, y, color, lineWidth);
         //this. ...
     }
     draw(context) {
         context.strokeStyle = this.color;
+        context.lineWidth = this.lineWidth;
         context.strokeRect(this.x, this.y, this.endX, this.endY);
     }
 }
 
 class Circle extends Shape {
-    constructor(x, y, color) {
-        super(x, y, color);
+    constructor(x, y, color, lineWidth) {
+        super(x, y, color, lineWidth);
         //this. ...
     }
     draw(context) {
         context.fillStyle = this.color;
+        context.lineWidth = this.lineWidth;
         context.fillRect(this.x, this.y, this.endX, this.endY);
     }
 }
 
 class Line extends Shape {
-    constructor(x, y, color) {
-        super(x, y, color);
+    constructor(x, y, color, lineWidth) {
+        super(x, y, color, lineWidth);
         this.points = [];
     }
 
@@ -48,6 +51,7 @@ class Line extends Shape {
 
     draw(context) {
 		context.fillStyle = this.color;
+    context.lineWidth = this.lineWidth;
 		context.beginPath( );     // Starts the line drawing
 		context.moveTo( this.x, this.y );
 		context.lineTo( this.endX, this.endY );
@@ -56,8 +60,8 @@ class Line extends Shape {
 }
 
 class Text extends Shape {
-    constructor(x, y, color) {
-        super(x, y, color);
+    constructor(x, y, color, lineWidth) {
+        super(x, y, color, lineWidth);
         //this. ...
     }
 }

@@ -3,6 +3,7 @@ $( document ).ready(function() {
         canvasObj: document.getElementById("myCanvas"),
         nextObject: "Text",
         nextColor: $('input[name=color]:checked').val(),
+        nextLineWidth: $('input[name=lineWidth]:checked').val(),
         currentShape: undefined,
         shapes: []
     };
@@ -13,17 +14,18 @@ $( document ).ready(function() {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
         settings.nextColor = $('input[name=color]:checked').val();
+        settings.nextLineWidth = $('input[name=lineWidth]:checked').val();
         if (settings.nextObject == "Circle") {
-            shape = new Circle(/* TODO: Fynna x og y */settings.nextColor);
+            shape = new Circle(/* TODO: Fynna x og y */settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject == "Rectangle") {
             settings.currentShape = "Rectangle";
             console.log("Drawing Rectangle!");
-            shape = new Rectangle(x, y, settings.nextColor);
+            shape = new Rectangle(x, y, settings.nextColor, settings.nextLineWidth);
         }
         else if (settings.nextObject == "Line") {
             settings.currentShape = "Line";
             console.log("Drawing Line!");
-            shape = new Line(x, y, settings.nextColor);
+            shape = new Line(x, y, settings.nextColor, settings.nextLineWidth);
         } else {
             return ;
         }

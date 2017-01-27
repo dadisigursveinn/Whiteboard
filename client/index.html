@@ -9,10 +9,19 @@
 </head>
 <body>
     <h1>Welcome to the amazing whiteboard</h1>
+    <label for="color">Color: </label>
     <form action="">
         <input type="radio" name="color" value="black" checked="checked">Black</input>
         <input type="radio" name="color" value="red">Red</input>
         <input type="radio" name="color" value="green">Green</input>
+    </form>
+    <label for="lineWidth">Line Width: </label>
+    <form name="lineWidth" id="lineWidth">
+        <input type="radio" name="lineWidth" value="2" checked="checked">2</input>
+        <input type="radio" name="lineWidth" value="4">4</input>
+        <input type="radio" name="lineWidth" value="6">6</input>
+        <input type="radio" name="lineWidth" value="8">8</input>
+        <input type="radio" name="lineWidth" value="10">10</input>
     </form>
     <div id="shapes">
         <button id="circle">Circle</button>
