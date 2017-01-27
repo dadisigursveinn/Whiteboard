@@ -33,7 +33,7 @@ class Circle extends Shape {
         //this. ...
     }
     draw(context) {
-        context.fillStyle = this.color;
+        context.strokeStyle = this.color;
         context.lineWidth = this.lineWidth;
         context.fillRect(this.x, this.y, this.endX, this.endY);
     }
@@ -50,7 +50,7 @@ class Line extends Shape {
     }
 
     draw(context) {
-		context.fillStyle = this.color;
+		context.strokeStyle = this.color;
     context.lineWidth = this.lineWidth;
 		context.beginPath( );     // Starts the line drawing
 		context.moveTo( this.x, this.y );
