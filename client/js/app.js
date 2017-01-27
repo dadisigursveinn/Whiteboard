@@ -16,7 +16,9 @@ $( document ).ready(function() {
         settings.nextColor = $('input[name=color]:checked').val();
         settings.nextLineWidth = $('input[name=lineWidth]:checked').val();
         if (settings.nextObject == "Circle") {
-            shape = new Circle(/* TODO: Fynna x og y */settings.nextColor, settings.nextLineWidth);
+            settings.currentShape = "Circle";
+            console.log("Drawing Circle!");
+            shape = new Circle(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject == "Rectangle") {
             settings.currentShape = "Rectangle";
             console.log("Drawing Rectangle!");

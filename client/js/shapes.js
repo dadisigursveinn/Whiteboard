@@ -35,7 +35,9 @@ class Circle extends Shape {
     draw(context) {
         context.strokeStyle = this.color;
         context.lineWidth = this.lineWidth;
-        context.fillRect(this.x, this.y, this.endX, this.endY);
+        context.beginPath();
+        context.arc(this.x, this.y, 50, 0, 2 * Math.PI, false);
+        context.stroke();
     }
 }
 
