@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     var settings = {
         canvasObj: document.getElementById("myCanvas"),
-        nextObject: "Text",
+        nextObject: "Rectangle",
         nextColor: $('input[name=color]:checked').val(),
         nextLineWidth: $('input[name=lineWidth]:checked').val(),
         currentShape: undefined,
