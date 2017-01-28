@@ -56,10 +56,10 @@ $( document ).ready(function() {
             return ;
         }
         if (settings.nextObject !== undefined && settings.nextObject !== "Text") {
-            settings.currentShape = shape;
             console.log("currentShape is ");
             console.log(settings.currentShape);
-            settings.shapes.push(shape)
+            settings.shapes.push({type: settings.currentShape, shape: shape});
+            settings.currentShape = shape;
             shape.draw(context);
         }
     });
@@ -103,6 +103,13 @@ $( document ).ready(function() {
                     drawAll();
                 }
                 break;
+            case "saveDrawing":
+                saveDrawing();
+                break;
+            case "loadDrawing":
+                loadDrawing();
+                drawAll();
+                break;
         }
     });
 
@@ -125,9 +132,73 @@ $( document ).ready(function() {
         // TODO: draw all from array
         //console.log(settings.shapes)
         for (var i = 0; i < settings.shapes.length; i++) {
-            settings.shapes[i].draw(context);
+            settings.shapes[i].shape.draw(context);
         }
 
+    }
+
+    function loadDrawing() {
+        var url = "http://localhost:3000/api/drawings/" + $('select[name=drawingsList]').val();
+
+        $.getJSON( url, function( data ) {
+            var items = [];
+            $.each( data, function( key, val ) {
+                if(key == "content") {
+                    var jsonShapes = val;
+                    $.each( jsonShapes, function(key, val) {
+                        console.log(val.type);
+                        shape = eval("new " + val.type + "()");
+                        $.each( val.shape, function(key, val) {
+                            console.log(key + val);
+                            shape[key] = val;
+                        });
+                        //console.log(shape);
+                        settings.shapes.push({type: val.type, shape: shape});
+                    });
+                    //console.log(settings.shapes);
+                };
+            });
+        });
+    }
+
+    updateDrawingList();
+    function updateDrawingList() {
+        $('#drawingsList').empty();
+        var url = "http://localhost:3000/api/drawings";
+
+        $.getJSON( url, function( data ) {
+            var items = [];
+            $.each( data, function( key, val ) {
+                //items.push( "<option id='" + key.id + "'>" + val.title + "</li>" );
+                $('#drawingsList').append($('<option>', {
+                    value: val.id,
+                    text : val.title
+                }));
+            });
+        });
+    }
+
+    function saveDrawing() {
+        var drawing = {
+            title: $('#drawingName').val(),
+            content: settings.shapes
+        };
+        console.log(drawing);
+        console.log(JSON.stringify(drawing));
+        var url = "http://localhost:3000/api/drawings";
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: url,
+            data: JSON.stringify(drawing),
+            success: function (data) {
+                console.log("Success");
+            },
+            error: function (xhr, err) {
+                console.log(xhr + err);
+            }
+        });
+        updateDrawingList();
     }
 
     $("#myCanvas").mouseup( function(e) {
