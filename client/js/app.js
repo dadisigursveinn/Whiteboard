@@ -20,15 +20,21 @@ $( document ).ready(function() {
         if (settings.nextObject === "Circle") {
             settings.currentShape = "Circle";
             console.log("Drawing Circle!");
+            console.log("Color: " + settings.nextColor);
+            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Circle(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject === "Rectangle") {
             settings.currentShape = "Rectangle";
             console.log("Drawing Rectangle!");
+            console.log("Color: " + settings.nextColor);
+            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Rectangle(x, y, settings.nextColor, settings.nextLineWidth);
         }
         else if (settings.nextObject === "Line") {
             settings.currentShape = "Line";
             console.log("Drawing Line!");
+            console.log("Color: " + settings.nextColor);
+            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Line(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject === "Text") {
             currentShape = "Text";

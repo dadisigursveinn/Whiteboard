@@ -17,7 +17,7 @@ class Shape {
 
 class Rectangle extends Shape {
     constructor(x, y, color, lineWidth) {
-        super(x, y, color);
+        super(x, y, color, lineWidth);
         this.endX = 0;
         this.endY = 0;
     }
