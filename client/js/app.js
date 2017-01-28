@@ -5,7 +5,8 @@ $( document ).ready(function() {
         nextColor: $('input[name=color]:checked').val(),
         nextLineWidth: $('input[name=lineWidth]:checked').val(),
         currentShape: undefined,
-        shapes: []
+        shapes: [],
+        undone: []
     };
 
     $("#myCanvas").mousedown(function(e) {
@@ -72,13 +73,19 @@ $( document ).ready(function() {
                 break;
             case "line":
                 settings.nextObject = "Line";
-                break
+                break;
             case "text":
                 settings.nextObject = "Text";
-                break
+                break;
             case "pen":
                 settings.nextObject = "Pen";
-                break
+                break;
+            case "undo":
+                var removed = settings.shapes[settings.shapes.length - 1];
+                settings.shapes.pop();
+                settings.undone.push(removed);
+                drawAll();
+                break;
         }
     });
 
