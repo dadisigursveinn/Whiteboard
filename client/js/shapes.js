@@ -10,8 +10,8 @@ class Shape {
     }
 
     setEnd(x, y) {
-        this.endX = x-this.x;
-        this.endY = y-this.y;
+        this.endX = x;
+        this.endY = y;
     }
 }
 
@@ -20,6 +20,11 @@ class Rectangle extends Shape {
         super(x, y, color);
         this.endX = 0;
         this.endY = 0;
+    }
+
+    setEnd(x, y) {
+        this.endX = x-this.x;
+        this.endY = y-this.y;
     }
 
     draw(context) {
@@ -44,23 +49,19 @@ class Circle extends Shape {
 }
 
 class Line extends Shape {
-    constructor(x, y, color, lineWidth) {
-        super(x, y, color, lineWidth);
-        this.points = [];
-        setEnd(x, y);
-    }
-
-    setEnd(x, y) {
-        this.points.push({x: x, y: y});
+    constructor(x, y) {
+        super(x, y);
+        this.x = x;
+        this.y = y;
+        this.endX = x;
+        this.endY = y;
     }
 
     draw(context) {
-      context.strokeStyle = this.color;
-      context.lineWidth = this.lineWidth;
-      context.beginPath( );     // Starts the line drawing
-      context.moveTo( this.x, this.y );
-      context.lineTo( this.endX, this.endY );
-      context.stroke( );
+        context.beginPath();
+        context.moveTo(this.x, this.y);
+        context.lineTo(this.endX, this.endY);
+        context.stroke( );
     }
 }
 
@@ -72,5 +73,20 @@ class Text extends Shape {
         this.fontFamily = "helvetica";
         //this. ...
         this.html = "<input class= 'textBox' type='text' style='position:absolute;top:" + this.y + ";left:" + this.x + "; font-family:" + fontFamily + "; color:" + color + "'></input>"
+    }
+}
+
+class Pen extends Shape {
+    constructor(x, y) {
+        super(x, y);
+        this.x = x;
+        this.y = y;
+    }
+
+    draw(context) {
+        context.beginPath();
+        context.moveTo(this.x, this.y);
+        context.lineTo(this.endX, this.endY);
+        context.stroke( );
     }
 }
