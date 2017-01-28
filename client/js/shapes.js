@@ -49,18 +49,22 @@ class Circle extends Shape {
 }
 
 class Line extends Shape {
-    constructor(x, y) {
+    constructor(x, y, color, lineWidth) {
         super(x, y);
         this.x = x;
         this.y = y;
         this.endX = x;
         this.endY = y;
+        this.lineWidth = lineWidth;
+        this.color = color;
     }
 
     draw(context) {
         context.beginPath();
         context.moveTo(this.x, this.y);
         context.lineTo(this.endX, this.endY);
+        context.strokeStyle = this.color;
+        context.lineWidth = this.lineWidth;
         context.stroke( );
     }
 }
