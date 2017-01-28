@@ -47,7 +47,7 @@ $( document ).ready(function() {
             })
         } else if (settings.nextObject === "Pen") {
             shape = new Pen(x, y);
-
+            settings.currentShape = "Pen";
         } else {
             return ;
         }
