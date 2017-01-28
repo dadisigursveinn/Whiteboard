@@ -10,3 +10,7 @@
   border: none;
   outline: none;
 }
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}

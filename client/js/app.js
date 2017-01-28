@@ -15,40 +15,37 @@ $( document ).ready(function() {
         var y = e.pageY - this.offsetTop;
         settings.nextColor = $('input[name=color]:checked').val();
         settings.nextLineWidth = $('input[name=lineWidth]:checked').val();
-        if (settings.nextObject == "Circle") {
+        if (settings.nextObject === "Circle") {
             settings.currentShape = "Circle";
             console.log("Drawing Circle!");
             shape = new Circle(x, y, settings.nextColor, settings.nextLineWidth);
-        } else if (settings.nextObject == "Rectangle") {
+        } else if (settings.nextObject === "Rectangle") {
             settings.currentShape = "Rectangle";
             console.log("Drawing Rectangle!");
             shape = new Rectangle(x, y, settings.nextColor, settings.nextLineWidth);
         }
-        else if (settings.nextObject == "Line") {
+        else if (settings.nextObject === "Line") {
             settings.currentShape = "Line";
             console.log("Drawing Line!");
             shape = new Line(x, y, settings.nextColor, settings.nextLineWidth);
+        } else if (settings.nextObject === "Text") {
+            currentShape = "Text";
+            $("#myCanvas").click(function(e){
+                var canvasInfo = document.getElementById("myCanvas").getBoundingClientRect();
+                shape = new Text("red", "helvetica", canvasInfo, e, this);
+                if (settings.nextObject === "Text") {
+                    $("body").append(shape.html);
+                }
+            })
         } else {
             return ;
         }
-        //...
-        settings.currentShape = shape;
-        settings.shapes.push(shape)
-        shape.draw(context);
-    });
-
-    $("#myCanvas").click(function(e){
-        var canvasInfo = document.getElementById("myCanvas").getBoundingClientRect();
-        console.log(canvasInfo);
-        var x = e.pageX - this.offsetLeft + canvasInfo.left;
-        var y = e.pageY - this.offsetTop + canvasInfo.top;
-        console.log("computed x: " + x);
-        console.log("computed y: " + y);
-        var textField = "<input class= 'textBox' type='text' style='position:absolute;top:" + y + ";left:" + x + ";' placeholder='text'></input>"
-        if (settings.nextObject === "Text") {
-            $("body").append(textField);
+        if (settings.nextObject != undefined && settings.nextObject != "Text") {
+            settings.currentShape = shape;
+            settings.shapes.push(shape)
+            shape.draw(context);
         }
-    })
+    });
 
     $("button").click(function(){
         switch($(this).attr('id')) {
@@ -73,7 +70,7 @@ $( document ).ready(function() {
     $("#myCanvas").mousemove( function(e) {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-        if(settings.currentShape !== undefined) {
+        if(settings.currentShape !== undefined && settings.currentShape !== "Text") {
             settings.currentShape.setEnd(x, y)
             drawAll();
         }
