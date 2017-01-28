@@ -38,13 +38,19 @@ class Rectangle extends Shape {
 class Circle extends Shape {
     constructor(x, y, color, lineWidth) {
         super(x, y, color, lineWidth);
-        //this. ...
+        this.endX = 0;
+        this.endY = 0;
+    }
+    setEnd(x, y) {
+        this.endX = x-this.x;
+        this.endY = y-this.y;
     }
     draw(context) {
         context.strokeStyle = this.color;
         context.lineWidth = this.lineWidth;
         context.beginPath();
-        context.arc(this.x, this.y, 50, 0, 2 * Math.PI, false);
+        //console.log("X:" + this.x + " Y:" + this.y + " endX" + this.endX + " endY" + this.endY );
+        context.arc(this.x, this.y, Math.abs(this.endX > this.endY? this.endX: this.endY), 0, 2 * Math.PI, false);
         context.stroke();
     }
 }
