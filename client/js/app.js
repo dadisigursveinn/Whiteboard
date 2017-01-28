@@ -15,6 +15,7 @@ $( document ).ready(function() {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
         var canvasInfo = document.getElementById("myCanvas").getBoundingClientRect();
+        settings.undone = [] // clear undo history
 
         settings.nextColor = $('input[name=color]:checked').val();
         settings.nextLineWidth = $('input[name=lineWidth]:checked').val();
@@ -81,10 +82,26 @@ $( document ).ready(function() {
                 settings.nextObject = "Pen";
                 break;
             case "undo":
-                var removed = settings.shapes[settings.shapes.length - 1];
-                settings.shapes.pop();
-                settings.undone.push(removed);
-                drawAll();
+                //console.log(settings.shapes[settings.shapes.length - 1
+                // Dont undo unless there is somethig to undo
+                if (settings.shapes[settings.shapes.length - 1] != undefined ) {
+                    var removed = settings.shapes[settings.shapes.length - 1];
+                    //console.log(removed);
+                    settings.undone.push(removed);
+                    //console.log(settings.shapes[settings.shapes.length - 1]);
+                    settings.shapes.pop();
+                    drawAll();
+                }
+                break;
+            case "redo":
+                //console.log(settings.undone[settings.undone.length -1]);
+
+                // Dont redo unless there is somethig to redo
+                if(settings.undone[settings.undone.length -1] != undefined) {
+                    settings.shapes.push(settings.undone[settings.undone.length -1]);
+                    settings.undone.pop();
+                    drawAll();
+                }
                 break;
         }
     });
@@ -92,8 +109,8 @@ $( document ).ready(function() {
     $("#myCanvas").mousemove( function(e) {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-        console.log("x is: " + x);
-        console.log("y is: " + y);
+        //console.log("x is: " + x);
+        //console.log("y is: " + y);
 
         if(settings.currentShape !== undefined && settings.currentShape !== "Text") {
             settings.currentShape.setEnd(x, y)
