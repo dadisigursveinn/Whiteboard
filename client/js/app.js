@@ -46,8 +46,10 @@ $( document ).ready(function() {
                 }
             })
         } else if (settings.nextObject === "Pen") {
-            shape = new Pen(x, y);
             settings.currentShape = "Pen";
+            console.log("Color: " + settings.nextColor);
+            console.log("Line Width: " + settings.nextLineWidth);
+            shape = new Pen(x, y, settings.nextColor, settings.nextLineWidth);
         } else {
             return ;
         }
