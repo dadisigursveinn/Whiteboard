@@ -33,7 +33,7 @@ $( document ).ready(function() {
             $("#myCanvas").click(function(e){
                 var canvasInfo = document.getElementById("myCanvas").getBoundingClientRect();
                 var font = $('select').val();
-                shape = new Text("red", font, canvasInfo, e, this);
+                shape = new Text(settings.nextColor, font, canvasInfo, e, this);
                 if (settings.nextObject === "Text") {
                     $("body").append(shape.html);
                 }

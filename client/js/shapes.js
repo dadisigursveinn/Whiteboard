@@ -69,9 +69,8 @@ class Text extends Shape {
         super(color, fontFamily, canvasInfo, document);
         this.x = e.pageX - document.offsetLeft + canvasInfo.left;
         this.y = e.pageY - document.offsetTop + canvasInfo.top;
-        this.color = "black";
         this.fontFamily = "helvetica";
         //this. ...
-        this.html = "<input class= 'textBox' type='text' style='position:absolute;top:" + this.y + ";left:" + this.x + "; font-family:" + fontFamily + ";'></input>"
+        this.html = "<input class= 'textBox' type='text' style='position:absolute;top:" + this.y + ";left:" + this.x + "; font-family:" + fontFamily + "; color:" + color + "'></input>"
     }
 }
