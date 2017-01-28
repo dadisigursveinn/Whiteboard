@@ -46,13 +46,13 @@ class Circle extends Shape {
 class Line extends Shape {
     constructor(x, y, color, lineWidth) {
         super(x, y, color, lineWidth);
-        this.points = [];
-        setEnd(x, y);
+  //      this.points = [];
+  //      setEnd(x, y);
     }
 
-    setEnd(x, y) {
-        this.points.push({x: x, y: y});
-    }
+  //  setEnd(x, y) {
+  //      this.points.push({x: x, y: y});
+  //  }
 
     draw(context) {
       context.strokeStyle = this.color;
