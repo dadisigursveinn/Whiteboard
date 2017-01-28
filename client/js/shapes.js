@@ -72,6 +72,6 @@ class Text extends Shape {
         this.color = "black";
         this.fontFamily = "helvetica";
         //this. ...
-        this.html = "<input class= 'textBox' type='text' style='position:absolute;top:" + this.y + ";left:" + this.x + "; font-family:" + fontFamily + ";' placeholder='text'></input>"
+        this.html = "<input class= 'textBox' type='text' style='position:absolute;top:" + this.y + ";left:" + this.x + "; font-family:" + fontFamily + ";'></input>"
     }
 }
