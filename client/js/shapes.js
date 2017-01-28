@@ -17,8 +17,10 @@ class Shape {
 class Rectangle extends Shape {
     constructor(x, y, color) {
         super(x, y, color);
-        //this. ...
+        this.endX = 0;
+        this.endY = 0;
     }
+
     draw(context) {
         context.strokeStyle = this.color;
         context.strokeRect(this.x, this.y, this.endX, this.endY);
@@ -40,6 +42,7 @@ class Line extends Shape {
     constructor(x, y, color) {
         super(x, y, color);
         this.points = [];
+        setEnd(x, y);
     }
 
     setEnd(x, y) {
@@ -47,11 +50,12 @@ class Line extends Shape {
     }
 
     draw(context) {
-		context.fillStyle = this.color;
-		context.beginPath( );     // Starts the line drawing
-		context.moveTo( this.x, this.y );
-		context.lineTo( this.endX, this.endY );
-		context.stroke( );
+        context.fillStyle = this.color;
+        context.beginPath( );     // Starts the line drawing
+        context.moveTo( x, y );
+        context.lineTo( this.endX, this.endY );
+        context.closePath();
+        context.stroke( );
     }
 }
 
