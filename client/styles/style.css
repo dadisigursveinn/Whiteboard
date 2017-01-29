@@ -35,3 +35,7 @@ input:focus::-webkit-input-placeholder {
 	margin-bottom: 10;
 	margin-top: 10;
 }
+
+.textBox:focus {
+	background-color: #D3D3D3;
+}
