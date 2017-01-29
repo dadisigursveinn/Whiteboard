@@ -76,9 +76,7 @@ $( document ).ready(function() {
                 // Dont undo unless there is somethig to undo
                 if (settings.shapes[settings.shapes.length - 1] != undefined ) {
                     var removed = settings.shapes[settings.shapes.length - 1];
-                    //console.log(removed);
                     settings.undone.push(removed);
-                    //console.log(settings.shapes[settings.shapes.length - 1]);
                     settings.shapes.pop();
                     drawAll();
                 }
@@ -107,8 +105,6 @@ $( document ).ready(function() {
     $("#myCanvas").mousemove( function(e) {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-  //      console.log("x: " + x);
-  //      console.log("y: " + y);
 
         if(settings.currentShape !== undefined && settings.currentShape !== "Text") {
             if(settings.nextObject === "Select") {
@@ -125,7 +121,6 @@ $( document ).ready(function() {
         // TODO: clear the canvasObj
         context.clearRect(0, 0, settings.canvasObj.width, settings.canvasObj.height);
         // TODO: draw all from array
-        //console.log(settings.shapes)
         for (var i = 0; i < settings.shapes.length; i++) {
             settings.shapes[i].shape.draw(context);
         }
@@ -162,7 +157,6 @@ $( document ).ready(function() {
         $.getJSON( url, function( data ) {
             var items = [];
             $.each( data, function( key, val ) {
-                //items.push( "<option id='" + key.id + "'>" + val.title + "</li>" );
                 $('#drawingsList').append($('<option>', {
                     value: val.id,
                     text : val.title
