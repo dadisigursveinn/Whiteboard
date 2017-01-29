@@ -1,56 +1,65 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
     <title>Amazing whiteboard!</title>
 </head>
 <body>
-    <h1>Welcome to the amazing whiteboard</h1>
-    <div id="edit">
-        <button id="undo">Undo</button>
-        <button id="redo">Redo</button>
+    <div class="jumbatron text-center">
+      <h1>Welcome to the amazing whiteboard</h1>
     </div>
-    <label for="color">Color: </label>
-    <form action="">
-        <input type="radio" name="color" value="black" checked="checked">Black</input>
-        <input type="radio" name="color" value="red">Red</input>
-        <input type="radio" name="color" value="green">Green</input>
-    </form>
-    <label for="lineWidth">Line Width: </label>
-    <form name="lineWidth" id="lineWidth">
-        <input type="radio" name="lineWidth" value="2" checked="checked">2</input>
-        <input type="radio" name="lineWidth" value="4">4</input>
-        <input type="radio" name="lineWidth" value="6">6</input>
-        <input type="radio" name="lineWidth" value="8">8</input>
-        <input type="radio" name="lineWidth" value="10">10</input>
-    </form>
-    <div id="shapes">
-        <button id="rectangle">Rectangle</button>
-        <button id="circle">Circle</button>
-        <button id="line">Line</button>
-        <button id="text">Text</button>
-        <button id="pen">Pen</button>
+    <div class="container">
+      <div class="" id="toolbar">
+          <label class="color" for="color">Color: </label>
+          <form class="color" action="">
+              <input type="radio" name="color" value="black" checked="checked">Black</input>
+              <input type="radio" name="color" value="red">Red</input>
+              <input type="radio" name="color" value="green">Green</input>
+          </form>
+          <label for="lineWidth">Line Width: </label>
+          <form name="lineWidth" id="lineWidth">
+              <input type="radio" name="lineWidth" value="2" checked="checked">2</input>
+              <input type="radio" name="lineWidth" value="4">4</input>
+              <input type="radio" name="lineWidth" value="6">6</input>
+              <input type="radio" name="lineWidth" value="8">8</input>
+              <input type="radio" name="lineWidth" value="10">10</input>
+          </form>
+          <table id="fontSettings">
+            <th>
+              <p>Font settings</p>
+            </th>
+            <tr>
+              <td>
+                <p>Font Family:</p>
+              </td>
+              <td>
+                <select>
+                  <option value="Arial">Arial</option>
+                  <option value="Helvetica">Helvetica</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <div id="shapes">
+              <button class="btn-lg" id="pen">&#10000</button>
+              <button class="btn-lg" id="rectangle">&#9886</button>
+              <button class="btn-lg" id="circle">&#9900</button>
+              <button class="btn-lg" id="line">&#10072</button>
+              <button class="btn-lg" id="text">Text</button>
+          </div>
+      </div>
+      <div class="canvas" id="canvas">
+        <canvas id="myCanvas" width="700" height="350"></canvas>
+      </div>
+      <div id="edit">
+          <button id="undo">&#8592 Undo</button>
+          <button id="redo">&#8594 Redo</button>
+      </div>
+      <p class="footer" style="font-style: italic;">By: Daði Sigursveinn Harðarson & Guðmundur Egill Árnason & Pála Ögn Stefánsdóttir</p>
     </div>
-    <table id="fontSettings">
-      <th>
-        <p>Font settings</p>
-      </th>
-      <tr>
-        <td>
-          <p>Font Family:</p>
-        </td>
-        <td>
-          <select>
-            <option value="Arial">Arial</option>
-            <option value="Helvetica">Helvetica</option>
-          </select>
-        </td>
-      </tr>
-    </table>
-    <canvas id="myCanvas" width="600" height="300"></canvas>
-    <p style="font-style: italic;">By: Daði Sigursveinn Harðarson & Guðmundur Egill Árnason & Pála Ögn Stefánsdóttir</p>
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script src="js/shapes.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="styles/style.css">
 </body>
 </html>
