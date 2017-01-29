@@ -53,9 +53,7 @@ $( document ).ready(function() {
             console.log("Line Width: " + settings.nextLineWidth);
             shape = new Pen(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject === "Select") {
-          //for(int i = 0; i )
-        //  settings.currentShape = settings.shape[0].find_enclosest(this.x, this.y, this.endX, this.endY)
-          settings.currentShape = settings.shapes[0].shape;
+          settings.currentShape = settings.shapes[settings.shapes.length-1].shape;
           //TODO: find object given x, y
           //Fuzzy search could for example search for the nearset point
           console.log('currentShape', settings.currentShape);
@@ -134,8 +132,7 @@ $( document ).ready(function() {
         if(settings.currentShape !== undefined && settings.currentShape !== "Text") {
             if(settings.nextObject === "Select") {
               console.log('wow');
-              settings.currentShape.x = x;
-              settings.currentShape.y = y;
+              settings.currentShape.moveTo(x, y);
             } else {
               settings.currentShape.setEnd(x, y)
             }

@@ -14,6 +14,11 @@ class Shape {
         this.endX = x;
         this.endY = y;
     }
+
+    moveTo(x, y) {
+      this.x = x;
+      this.y = y;
+    }
 }
 
 class Rectangle extends Shape {
@@ -74,6 +79,15 @@ class Line extends Shape {
         context.lineWidth = this.lineWidth;
         context.stroke( );
     }
+
+    moveTo(x, y) {
+        var changedX = x - this.x;
+        var changedY = y - this.y;
+        this.x = x;
+        this.y = y;
+        this.endX += changedX;
+        this.endY += changedY;
+    }
 }
 
 class Text extends Shape {
@@ -104,6 +118,22 @@ class Pen extends Shape {
         this.endY = y;
         this.points.push({x: x, y: y});
     }
+
+    moveTo(x, y) {
+
+      var changedX = x - this.x;
+      var changedY = y - this.y;
+
+      this.x = x;
+      this.y = y;
+
+      for(var i = 0; i < this.points.length; i++) {
+        this.points[i].x += changedX;
+        this.points[i].y += changedY;
+      }
+      //TODO: Move each point accoring to change
+    }
+
 
     draw(context) {
         context.beginPath();
