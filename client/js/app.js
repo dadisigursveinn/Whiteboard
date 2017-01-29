@@ -52,7 +52,16 @@ $( document ).ready(function() {
             console.log("Color: " + settings.nextColor);
             console.log("Line Width: " + settings.nextLineWidth);
             shape = new Pen(x, y, settings.nextColor, settings.nextLineWidth);
-        } else {
+        } else if (settings.nextObject === "Select") {
+          //for(int i = 0; i )
+        //  settings.currentShape = settings.shape[0].find_enclosest(this.x, this.y, this.endX, this.endY)
+          settings.currentShape = settings.shapes[0].shape;
+          //TODO: find object given x, y
+          //Fuzzy search could for example search for the nearset point
+          console.log('currentShape', settings.currentShape);
+          return;
+        }
+        else {
             return ;
         }
         if (settings.nextObject !== undefined && settings.nextObject !== "Text") {
@@ -110,17 +119,26 @@ $( document ).ready(function() {
                 loadDrawing();
                 drawAll();
                 break;
+            case "select":
+                settings.nextObject = "Select";
+              break;
         }
     });
 
     $("#myCanvas").mousemove( function(e) {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-        //console.log("x is: " + x);
-        //console.log("y is: " + y);
+  //      console.log("x: " + x);
+  //      console.log("y: " + y);
 
         if(settings.currentShape !== undefined && settings.currentShape !== "Text") {
-            settings.currentShape.setEnd(x, y)
+            if(settings.nextObject === "Select") {
+              console.log('wow');
+              settings.currentShape.x = x;
+              settings.currentShape.y = y;
+            } else {
+              settings.currentShape.setEnd(x, y)
+            }
             drawAll();
         }
     });
