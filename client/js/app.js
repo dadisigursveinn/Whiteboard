@@ -21,22 +21,13 @@ $( document ).ready(function() {
         settings.nextLineWidth = $('input[name=lineWidth]:checked').val();
         if (settings.nextObject === "Circle") {
             settings.currentShape = "Circle";
-            console.log("Drawing Circle!");
-            console.log("Color: " + settings.nextColor);
-            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Circle(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject === "Rectangle") {
             settings.currentShape = "Rectangle";
-            console.log("Drawing Rectangle!");
-            console.log("Color: " + settings.nextColor);
-            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Rectangle(x, y, settings.nextColor, settings.nextLineWidth);
         }
         else if (settings.nextObject === "Line") {
             settings.currentShape = "Line";
-            console.log("Drawing Line!");
-            console.log("Color: " + settings.nextColor);
-            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Line(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject === "Text") {
             currentShape = "Text";
@@ -49,22 +40,15 @@ $( document ).ready(function() {
             })
         } else if (settings.nextObject === "Pen") {
             settings.currentShape = "Pen";
-            console.log("Color: " + settings.nextColor);
-            console.log("Line Width: " + settings.nextLineWidth);
             shape = new Pen(x, y, settings.nextColor, settings.nextLineWidth);
         } else if (settings.nextObject === "Select") {
           settings.currentShape = settings.shapes[settings.shapes.length-1].shape;
-          //TODO: find object given x, y
-          //Fuzzy search could for example search for the nearset point
-          console.log('currentShape', settings.currentShape);
           return;
         }
         else {
             return ;
         }
         if (settings.nextObject !== undefined && settings.nextObject !== "Text") {
-            console.log("currentShape is ");
-            console.log(settings.currentShape);
             settings.shapes.push({type: settings.currentShape, shape: shape});
             settings.currentShape = shape;
             shape.draw(context);
@@ -89,7 +73,6 @@ $( document ).ready(function() {
                 settings.nextObject = "Pen";
                 break;
             case "undo":
-                //console.log(settings.shapes[settings.shapes.length - 1
                 // Dont undo unless there is somethig to undo
                 if (settings.shapes[settings.shapes.length - 1] != undefined ) {
                     var removed = settings.shapes[settings.shapes.length - 1];
@@ -101,8 +84,6 @@ $( document ).ready(function() {
                 }
                 break;
             case "redo":
-                //console.log(settings.undone[settings.undone.length -1]);
-
                 // Dont redo unless there is somethig to redo
                 if(settings.undone[settings.undone.length -1] != undefined) {
                     settings.shapes.push(settings.undone[settings.undone.length -1]);
@@ -131,7 +112,6 @@ $( document ).ready(function() {
 
         if(settings.currentShape !== undefined && settings.currentShape !== "Text") {
             if(settings.nextObject === "Select") {
-              console.log('wow');
               settings.currentShape.moveTo(x, y);
             } else {
               settings.currentShape.setEnd(x, y)
@@ -167,10 +147,8 @@ $( document ).ready(function() {
                             console.log(key + val);
                             shape[key] = val;
                         });
-                        //console.log(shape);
                         settings.shapes.push({type: val.type, shape: shape});
                     });
-                    //console.log(settings.shapes);
                 };
             });
         });
@@ -198,8 +176,6 @@ $( document ).ready(function() {
             title: $('#drawingName').val(),
             content: settings.shapes
         };
-        console.log(drawing);
-        console.log(JSON.stringify(drawing));
         var url = "http://localhost:3000/api/drawings";
         $.ajax({
             type: "POST",
