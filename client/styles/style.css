@@ -17,13 +17,13 @@ input:focus::-webkit-input-placeholder {
 }
 
 .footer {
-	padding-top: 30px;
-	padding-bottom: 30px;
+	margin-top: 30;
+	margin-bottom: 30;
 }
 
 #canvas {
-	padding-top: 20;
-	padding-bottom: 20;
+	margin-top: 20;
+	margin-bottom: 20;
 }
 
 .shape {
@@ -32,6 +32,6 @@ input:focus::-webkit-input-placeholder {
 }
 
 #drawings {
-	padding-bottom: 10;
-	padding-top: 10;
+	margin-bottom: 10;
+	margin-top: 10;
 }
